@@ -1,6 +1,7 @@
 import React from "react";
 import { StyleSheet, View, Text, useWindowDimensions, Image } from "react-native";
 
+
 const OnboardingItem = ({item})=> {
 const {width} = useWindowDimensions()
   return (
@@ -26,7 +27,7 @@ const styles = StyleSheet.create({
       flex: 0.7,
       justifyContent:'center'
   },
-  
+
     description:{
         fontWeight: '300',
         color:'#62656b',
