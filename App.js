@@ -1,51 +1,39 @@
-import React, { useState, useEffect } from "react";
+import "react-native-gesture-handler";
+import React from "react";
 import { StyleSheet, View, ActivityIndicator, StatusBar } from "react-native";
 import Onboarding from "./components/onboarding";
-import HomeScreen from "./components/HomeScreen";
-import AsyncStorage from "@react-native-async-storage/async-storage";
+import Login from "./components/LoginScreen";
 
-const Loading = () => {
-  return (
-    <View>
-      <ActivityIndicator size="large" />
-    </View>
-  );
-};
+import { NavigationContainer } from "@react-navigation/native";
+import {createStackNavigator} from '@react-navigation/stack';
+const Stack = createStackNavigator()
+
+export const MainScreen = ({navigation})=>{
+  return(
+    <View style={styles.container}>
+    <Onboarding navigation={navigation}/>
+    <StatusBar style="auto"/>
+  </View>
+  )
+}
 
 export default function App() {
-  const [loading, setLoading] = useState(true);
-  const [viewedOnboarding, setViewOnboarding] = useState(false);
+   return (
 
-
-  const checkOnboarding = async () =>{
-    try {
-      const value = await AsyncStorage.getItem('@viewOnboarding')
-      if ( value !== null){
-        setViewOnboarding(true)
-      }
-    } catch (error) {
-      console.log('Erro @checkOnboarding: ', error);
-    } finally{
-      setLoading(false)
-    }
-  }
-
-
-  useEffect(()=>{
-checkOnboarding()
-  }, [])
-  return (
-    <View style={styles.container}>
-      {loading ? (
-        <Loading />
-      ) : viewedOnboarding ? (
-        <HomeScreen />
-      ) : (
-        <Onboarding />
-      )}
-
-      <StatusBar style="auto"/>
-    </View>
+   <NavigationContainer>
+   <Stack.Navigator screenOptions={{headerShown: false,}}>
+     <Stack.Screen
+     name="Welcome"
+     component={MainScreen}
+     >
+     </Stack.Screen>
+     <Stack.Screen
+     name='LoginScreen'
+     component={Login}>
+     </Stack.Screen>
+   </Stack.Navigator>
+  
+ </NavigationContainer>
   );
 }
 

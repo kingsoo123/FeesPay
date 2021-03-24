@@ -2,10 +2,10 @@ import { StatusBar } from "expo-status-bar";
 import React from "react";
 import { StyleSheet, View } from "react-native";
 
-export default function HomeScreen() {
+export default function SignUp() {
   return (
     <View style={styles.container}>
-      <Text>home screen</Text>
+      <Text>Sign Up screen</Text>
     </View>
   );
 }

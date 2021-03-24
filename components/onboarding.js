@@ -1,29 +1,18 @@
-import React, { useState, useRef } from "react";
-import { Text, FlatList, View, Animated } from "react-native";
+import React, { useRef } from "react";
+import { Text, FlatList, View, Animated, TouchableOpacity } from "react-native";
 import slides from "../slides";
 import OnboardingItem from "./onBoardingItem";
 import Paginator from "./Paginator";
-import AsyncStorage from "@react-native-async-storage/async-storage";
 
-const Onboarding = () => {
-  const [currentIndex, setCurrentIndex] = useState(0);
+const Onboarding = ({ navigation }) => {
+  console.log("::::::::", navigation);
   const scrollX = useRef(new Animated.Value(0)).current;
   const slidesRef = useRef(null);
   const viewableItemsChanged = useRef(({ viewableItems }) => {
     setCurrentIndex(viewableItems[0].index);
   }).current;
   const viewConfig = useRef({ viewAreaCoveragePercentThreshold: 50 }).current;
-  const scrollTo = async () => {
-    if (currentIndex < slides.length - 1) {
-      slidesRef.current.scrollToIndex({ index: currentIndex + 1 });
-    } else {
-     try {
-        await AsyncStorage.getItem('@viewOnboarding', 'true')
-     } catch (error) {
-         console.log('Error @setItem: ', error);
-     }
-    }
-  };
+
   return (
     <View>
       <View style={{ flex: 3 }}>
@@ -47,6 +36,18 @@ const Onboarding = () => {
       </View>
 
       <Paginator data={slides} scrollX={scrollX} />
+      <View
+        style={{
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+          paddingBottom: 30
+        }}
+      >
+        <TouchableOpacity onPress={() => navigation.navigate("LoginScreen")}>
+          <Text>Skip</Text>
+        </TouchableOpacity>
+      </View>
     </View>
   );
 };
