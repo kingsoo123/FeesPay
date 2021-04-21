@@ -5,7 +5,6 @@ import OnboardingItem from "./onBoardingItem";
 import Paginator from "./Paginator";
 
 const Onboarding = ({ navigation }) => {
-  console.log("::::::::", navigation);
   const scrollX = useRef(new Animated.Value(0)).current;
   const slidesRef = useRef(null);
   const viewableItemsChanged = useRef(({ viewableItems }) => {

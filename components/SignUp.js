@@ -10,7 +10,7 @@ import {
   SafeAreaView,
 } from "react-native";
 
-export default function SignUp() {
+export default function SignUp({navigation}) {
   const [usename, setUsername] = useState("");
   const [password, setPassword] = useState("");
   return (
@@ -42,7 +42,7 @@ export default function SignUp() {
             onChangeText={(username) => setPassword({})}
             underlineColorAndroid="transparent"
           />
-          <TouchableOpacity style={styles.btn} onPress={signin}>
+          <TouchableOpacity style={styles.btn} onPress={()=>navigation.navigate('HomeScreen')}>
             <Text style={styles.btnText}>Sign up</Text>
           </TouchableOpacity>
           
@@ -51,10 +51,6 @@ export default function SignUp() {
     </ScrollView>
   );
 }
-
-const signin = () => {
-  alert("signed In");
-};
 
 const styles = StyleSheet.create({
   container: {
@@ -71,10 +67,8 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     padding: 20,
-    backgroundColor: "grey",
-    borderRadius: 30,
-    borderWidth: 0.5,
-    borderColor: "grey",
+    backgroundColor: "#000",
+    borderRadius: 20,
     marginTop: 90,
   },
   header: {
@@ -85,16 +79,16 @@ const styles = StyleSheet.create({
   },
   textInput: {
     alignSelf: "stretch",
-    padding: 15,
+    padding: 10,
     marginBottom: 20,
     backgroundColor: "#fff",
-    borderRadius: 20,
+    borderRadius: 15,
   },
   btn: {
     alignSelf: "stretch",
-    backgroundColor: "#01cb53",
-    padding: 16,
-    borderRadius: 20,
+    backgroundColor: "dodgerblue",
+    padding: 11,
+    borderRadius: 15,
     alignItems: "center",
   },
   btnText: {

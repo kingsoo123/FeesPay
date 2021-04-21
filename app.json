@@ -27,6 +27,8 @@
     },
     "web": {
       "favicon": "./assets/favicon.png"
-    }
+    },
+    "description": "This App let's you pay fees as a parent or guardian with ease",
+    "githubUrl": "https://github.com/kingsoo123/FeesPay"
   }
 }
